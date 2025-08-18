@@ -1,7 +1,9 @@
 package com.aungkyawoo.user_service.service.impl;
 
+import com.aungkyawoo.user_service.dto.UserDto;
 import com.aungkyawoo.user_service.dto.request.CreateUserRequestDto;
 import com.aungkyawoo.user_service.entity.User;
+import com.aungkyawoo.user_service.exception.ResourceNotFoundException;
 import com.aungkyawoo.user_service.exception.UserAlreadyExistsException;
 import com.aungkyawoo.user_service.mapper.UserMapper;
 import com.aungkyawoo.user_service.repository.UserRepository;
@@ -10,6 +12,7 @@ import com.aungkyawoo.user_service.util.StringUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.Optional;
 
 @Service
@@ -28,5 +31,11 @@ public class UserServiceImpl implements IUserService {
             throw new UserAlreadyExistsException("User already registered with email: " + user.getEmail());
         }
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDto fetchUser(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+        return UserMapper.mapUserToUserDto(user);
     }
 }
