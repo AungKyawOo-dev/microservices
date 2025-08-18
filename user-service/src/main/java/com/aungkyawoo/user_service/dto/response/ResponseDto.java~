@@ -1,0 +1,15 @@
+package com.aung.accounts.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Schema(name = "ResponseDto", description = "Response Dto")
+@Data @AllArgsConstructor
+public class ResponseDto {
+
+    @Schema(description = "Status Code", example = "200")
+    private String StatusCode;
+    @Schema(description = "Status Message", example = "Success")
+    private String StatusMessage;
+}

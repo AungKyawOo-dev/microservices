@@ -1,4 +1,0 @@
-package com.aungkyawoo.user_service.dto;
-
-public class UserDto {
-}
