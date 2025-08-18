@@ -1,41 +1,56 @@
 package com.aungkyawoo.user_service.service.impl;
 
 import com.aungkyawoo.user_service.dto.UserDto;
-import com.aungkyawoo.user_service.dto.request.CreateUserRequestDto;
+import com.aungkyawoo.user_service.dto.request.UserRequestDto;
 import com.aungkyawoo.user_service.entity.User;
 import com.aungkyawoo.user_service.exception.ResourceNotFoundException;
 import com.aungkyawoo.user_service.exception.UserAlreadyExistsException;
-import com.aungkyawoo.user_service.mapper.UserMapper;
 import com.aungkyawoo.user_service.repository.UserRepository;
 import com.aungkyawoo.user_service.service.IUserService;
 import com.aungkyawoo.user_service.util.StringUtils;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.lang.module.ResolutionException;
 import java.util.Optional;
 
+import static com.aungkyawoo.user_service.mapper.UserMapper.mapUserDtoToUser;
+import static com.aungkyawoo.user_service.mapper.UserMapper.mapUserToUserDto;
+
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImpl implements IUserService {
 
     /** Inject User Service */
     private final UserRepository userRepository;
 
     @Override
-    public void createUser(CreateUserRequestDto userRequestDto) {
-        User user = UserMapper.mapUserDtoToUser(userRequestDto);
+    public UserDto createUser(UserRequestDto userRequestDto) {
+        User user = new User();
         user.setId(StringUtils.getUUID());
+        mapUserDtoToUser(userRequestDto, user);
         Optional<User> optionalCustomer = userRepository.findByEmail(user.getEmail());
         if (optionalCustomer.isPresent()) {
             throw new UserAlreadyExistsException("User already registered with email: " + user.getEmail());
         }
         userRepository.save(user);
+        return mapUserToUserDto(user);
     }
 
     @Override
-    public UserDto fetchUser(String email) {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
-        return UserMapper.mapUserToUserDto(user);
+    public UserDto fetchUser(String id) {
+        User user = userRepository.findById(id).orElseThrow(()
+                -> new ResourceNotFoundException("User", "ID", id));
+        return mapUserToUserDto(user);
     }
+
+    @Override
+    public void updateUser(String id, UserRequestDto userRequestDto) {
+        User user = userRepository.findById(id).orElseThrow(()
+                -> new ResourceNotFoundException("User", "ID", id));
+        mapUserDtoToUser(userRequestDto, user);
+        userRepository.save(user);
+    }
+
+
+
 }

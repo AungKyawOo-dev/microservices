@@ -1,10 +1,12 @@
 package com.aungkyawoo.user_service.service;
 
 import com.aungkyawoo.user_service.dto.UserDto;
-import com.aungkyawoo.user_service.dto.request.CreateUserRequestDto;
+import com.aungkyawoo.user_service.dto.request.UserRequestDto;
 
 public interface IUserService {
-    void createUser(CreateUserRequestDto userRequestDto);
+    UserDto createUser(UserRequestDto userRequestDto);
 
     UserDto fetchUser(String email);
+
+    void updateUser(String id, UserRequestDto userRequestDto);
 }

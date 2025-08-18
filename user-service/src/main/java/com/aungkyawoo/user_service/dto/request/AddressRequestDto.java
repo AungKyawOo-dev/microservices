@@ -1,6 +1,15 @@
 package com.aungkyawoo.user_service.dto.request;
 
-public class CreateAddressRequestDto {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class AddressRequestDto {
     private String line1;
     private String line2;
     private String city;

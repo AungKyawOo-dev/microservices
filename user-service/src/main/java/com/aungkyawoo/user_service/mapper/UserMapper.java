@@ -1,16 +1,14 @@
 package com.aungkyawoo.user_service.mapper;
 
 import com.aungkyawoo.user_service.dto.UserDto;
-import com.aungkyawoo.user_service.dto.request.CreateUserRequestDto;
+import com.aungkyawoo.user_service.dto.request.UserRequestDto;
 import com.aungkyawoo.user_service.entity.User;
 
 public class UserMapper {
-    public static User mapUserDtoToUser(CreateUserRequestDto userDto) {
-        User user = new User();
+    public static void mapUserDtoToUser(UserRequestDto userDto, User user) {
         user.setEmail(userDto.getEmail());
         user.setFullName(userDto.getFullName());
         user.setPhoneNumber(userDto.getPhoneNumber());
-        return user;
     }
 
     public static UserDto mapUserToUserDto(User user) {
@@ -21,4 +19,5 @@ public class UserMapper {
         userDto.setPhoneNumber(user.getPhoneNumber());
         return userDto;
     }
+
 }
