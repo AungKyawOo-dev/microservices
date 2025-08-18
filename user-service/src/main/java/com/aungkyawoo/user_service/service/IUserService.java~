@@ -9,6 +9,4 @@ public interface IUserService {
     UserDto fetchUser(String email);
 
     void updateUser(String id, UserRequestDto userRequestDto);
-
-    void deleteUser(String id);
 }
