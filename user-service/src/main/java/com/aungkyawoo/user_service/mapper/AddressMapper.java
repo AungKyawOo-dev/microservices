@@ -5,7 +5,17 @@ import com.aungkyawoo.user_service.dto.request.AddressRequestDto;
 import com.aungkyawoo.user_service.entity.Address;
 import com.aungkyawoo.user_service.util.StringUtils;
 
+/**
+ * Address Mapper
+ * Author : Aung Kyaw Oo
+ */
 public class AddressMapper {
+
+    /**
+     * Map the address request dto to address
+     * @param addressRequestDto AddressRequestDto
+     * @param address Address
+     */
     public static void mapAddressDtoToAddress(AddressRequestDto addressRequestDto, Address address) {
         address.setLine1(addressRequestDto.getLine1());
         address.setLine2(addressRequestDto.getLine2());
@@ -15,6 +25,11 @@ public class AddressMapper {
         address.setCountry(addressRequestDto.getCountry());
     }
 
+    /**
+     * Map the address request dto to address
+     * @param addressRequestDto AddressRequestDto
+     * @return Address
+     */
     public static Address mapAddressRequestDtoToAddress(AddressRequestDto addressRequestDto) {
         Address address = new Address();
         address.setId(StringUtils.getUUID());
@@ -22,6 +37,11 @@ public class AddressMapper {
         return address;
     }
 
+    /**
+     * Map the address to address dto
+     * @param address Address
+     * @return AddressDto
+     */
     public static AddressDto mapAddressToAddressDto(Address address) {
         return AddressDto.builder()
                 .id(address.getId())

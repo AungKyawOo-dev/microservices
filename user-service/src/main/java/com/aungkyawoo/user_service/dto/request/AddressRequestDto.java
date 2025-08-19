@@ -7,6 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * Address Request Dto
+ * Author : Aung Kyaw Oo
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

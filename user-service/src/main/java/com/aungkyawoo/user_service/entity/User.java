@@ -6,6 +6,10 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * User Entity
+ * Author : Aung Kyaw Oo
+ */
 @Entity
 @Getter
 @Setter

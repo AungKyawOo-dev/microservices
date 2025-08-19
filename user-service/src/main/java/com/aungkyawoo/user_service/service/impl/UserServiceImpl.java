@@ -16,6 +16,10 @@ import java.util.Optional;
 import static com.aungkyawoo.user_service.mapper.UserMapper.mapUserDtoToUser;
 import static com.aungkyawoo.user_service.mapper.UserMapper.mapUserToUserDto;
 
+/**
+ * User Service Implementation
+ * Author: Aung Kyaw Oo
+ */
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements IUserService {
@@ -23,6 +27,11 @@ public class UserServiceImpl implements IUserService {
     /** Inject User Service */
     private final UserRepository userRepository;
 
+    /**
+     * Create User
+     * @param userRequestDto UserRequestDto
+     * @return UserDto
+     */
     @Override
     public UserDto createUser(UserRequestDto userRequestDto) {
         User user = new User();
@@ -36,6 +45,11 @@ public class UserServiceImpl implements IUserService {
         return mapUserToUserDto(user);
     }
 
+    /**
+     * Fetch user with user id
+     * @param id String
+     * @return UserDto
+     */
     @Override
     public UserDto fetchUser(String id) {
         User user = userRepository.findById(id).orElseThrow(()
@@ -43,6 +57,11 @@ public class UserServiceImpl implements IUserService {
         return mapUserToUserDto(user);
     }
 
+    /**
+     * Update User
+     * @param id String
+     * @param userRequestDto UserRequestDto
+     */
     @Override
     public void updateUser(String id, UserRequestDto userRequestDto) {
         User user = userRepository.findById(id).orElseThrow(()
@@ -51,6 +70,10 @@ public class UserServiceImpl implements IUserService {
         userRepository.save(user);
     }
 
+    /**
+     * Delete User
+     * @param id String
+     */
     @Override
     public void deleteUser(String id) {
         User user = userRepository.findById(id).orElseThrow(()

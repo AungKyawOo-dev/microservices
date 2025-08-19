@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * User DTO
+ * Author : Aung Kyaw Oo
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

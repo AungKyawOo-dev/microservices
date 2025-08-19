@@ -6,6 +6,10 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
+/**
+ * Error Response Dto
+ * Author : Aung Kyaw Oo
+ */
 @Data
 @AllArgsConstructor
 public class ErrorResponseDto {

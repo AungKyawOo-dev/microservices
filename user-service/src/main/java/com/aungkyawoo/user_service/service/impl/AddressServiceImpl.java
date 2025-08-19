@@ -15,6 +15,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * AddressServiceImpl
+ * Author : Aung Kyaw Oo
+ */
 @Service
 @AllArgsConstructor
 public class AddressServiceImpl implements IAddressService {
@@ -22,8 +26,15 @@ public class AddressServiceImpl implements IAddressService {
     /** Inject AddressRepository */
     private final AddressRepository addressRepository;
 
+    /** Inject UserRepository */
     private final UserRepository userRepository;
 
+    /**
+     * createAddress
+     * @param id String
+     * @param addressRequestDto AddressRequestDto
+     * @return AddressDto
+     */
     @Override
     public AddressDto createAddress(String id, AddressRequestDto addressRequestDto) {
         Address address = AddressMapper.mapAddressRequestDtoToAddress(addressRequestDto);
@@ -36,6 +47,11 @@ public class AddressServiceImpl implements IAddressService {
         return AddressMapper.mapAddressToAddressDto(address);
     }
 
+    /**
+     * Fetch address with user id
+     * @param id String
+     * @return List<AddressDto>
+     */
     @Override
     public List<AddressDto> fetchAddress(String id) {
         User user = userRepository.findById(id).orElseThrow(()

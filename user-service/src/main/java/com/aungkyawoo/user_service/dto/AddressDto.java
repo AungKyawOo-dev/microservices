@@ -5,6 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Address Dto
+ * Author : Aung Kyaw Oo
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

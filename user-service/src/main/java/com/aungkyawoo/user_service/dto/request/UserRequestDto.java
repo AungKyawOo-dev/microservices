@@ -9,6 +9,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * User Request Dto
+ * Author : Aung Kyaw Oo
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

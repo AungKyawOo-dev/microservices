@@ -15,9 +15,21 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Global Exception Handler
+ * Author : Aung Kyaw Oo
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Handle Method Argument Not Valid Exception
+     * @param ex MethodArgumentNotValidException
+     * @param headers HttpHeaders
+     * @param status HttpStatusCode
+     * @param request WebRequest
+     * @return ResponseEntity
+     */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         Map<String, String> errors = new HashMap<>();
@@ -25,6 +37,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Handle Global Exception
+     * @param ex Exception
+     * @param webRequest WebRequest
+     * @return ResponseEntity
+     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleGlobalException(Exception ex, WebRequest webRequest) {
 
@@ -36,6 +54,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorResponseDto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Handle User Already Exists Exception
+     * @param ex UserAlreadyExistsException
+     * @param webRequest WebRequest
+     * @return ResponseEntity
+     */
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ErrorResponseDto> handleUserAlreadyExistsException(UserAlreadyExistsException ex, WebRequest webRequest) {
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
@@ -46,6 +70,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Handle Resource Not Found Exception
+     * @param ex ResourceNotFoundException
+     * @param webRequest WebRequest
+     * @return ResponseEntity
+     */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest webRequest) {
 
