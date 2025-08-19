@@ -4,6 +4,10 @@ package com.aungkyawoo.user_service.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Address Entity
+ * Author : Aung Kyaw Oo
+ */
 @Entity
 @Getter
 @Setter
