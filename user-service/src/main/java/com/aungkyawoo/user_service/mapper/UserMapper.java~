@@ -7,7 +7,8 @@ import com.aungkyawoo.user_service.entity.User;
 import java.util.stream.Collectors;
 
 public class UserMapper {
-    public static void mapUserDtoToUser(UserRequestDto userDto, User user) {
+    public static User mapUserDtoToUser(UserRequestDto userDto) {
+        return User.builder
         user.setEmail(userDto.getEmail());
         user.setFullName(userDto.getFullName());
         user.setPhoneNumber(userDto.getPhoneNumber());
